@@ -1,4 +1,4 @@
-from balance_eqation import balance_equation
+from balance_equation import balance_equation
 
 elements = {
     'H': 1.008,
@@ -184,7 +184,7 @@ def get_compounds_old():
     print(f"Enter the amount of {compound_one} needed to balance the equation:")
     bal_one = int(input())
 
-    print(f"Enter the given amount of {compound_one}( in grams):")
+    print(f"Enter the given amount of {compound_one}(in grams):")
     quantity = float(input())
 
     print("Enter the wanted compound:")
@@ -199,34 +199,37 @@ def get_compounds_old():
 
     print(f"{quantity}g of {compound_one} results in {calc_mass(quantity, compound_one_weight, bal_one, compound_two_weight, bal_two)}g of {compound_two}")
 
-print("Enter the compounds on the left side of the equation(seperated by a \"+\"):")
-side_one_raw = input()
-side_one = side_one_raw.split("+")
+def get_compounds_experimental():
+    print("Enter the compounds on the left side of the equation(seperated by a \"+\"):")
+    side_one_raw = input()
+    side_one = side_one_raw.split("+")
 
-print("Enter the compounds on the right side of the equation(seperated by a \"+\"):")
-side_two_raw = input()
-side_two = side_two_raw.split("+")
+    print("Enter the compounds on the right side of the equation(seperated by a \"+\"):")
+    side_two_raw = input()
+    side_two = side_two_raw.split("+")
 
-balance_vals = balance_equation(side_one, side_two)
-left_vals = balance_vals[0]
-right_vals = balance_vals[1]
+    balance_vals = balance_equation(side_one, side_two)
+    left_vals = balance_vals[0]
+    right_vals = balance_vals[1]
 
-print("Enter the given element:")
-given = input()
+    print("Enter the given element:")
+    given = input()
 
-if given in side_one:
-    given_index = side_one.index(given)
-    given_const = left_vals[given_index]
-elif given in side_two:
-    given_index = side_two.index(given)
-    given_const = right_vals[given_index]
+    if given in side_one:
+        given_index = side_one.index(given)
+        given_const = left_vals[given_index]
+    elif given in side_two:
+        given_index = side_two.index(given)
+        given_const = right_vals[given_index]
 
-print(f"Enter the amount of {given} (in grams):")
-given_weight = input()
+    print(f"Enter the amount of {given} (in grams):")
+    given_weight = input()
 
-print(f"{given_weight}g of {given} in the equation {side_one_raw} --> {side_two_raw} means the following mass will be used:")
-for i in range(0, len(side_one)):
-    print(f"{calc_stoich(given, int(given_const), float(given_weight), side_one[i], int(left_vals[i]))}g of {side_one[i]}")
+    print(f"{given_weight}g of {given} in the equation {side_one_raw} --> {side_two_raw} means the following mass will be used:")
+    for i in range(0, len(side_one)):
+        print(f"{calc_stoich(given, int(given_const), float(given_weight), side_one[i], int(left_vals[i]))}g of {side_one[i]}")
 
-for i in range(0, len(side_two)):
-    print(f"{calc_stoich(given, int(given_const), float(given_weight), side_two[i], int(right_vals[i]))}g of {side_two[i]}")
+    for i in range(0, len(side_two)):
+        print(f"{calc_stoich(given, int(given_const), float(given_weight), side_two[i], int(right_vals[i]))}g of {side_two[i]}")
+
+get_compounds_old()
