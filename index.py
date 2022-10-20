@@ -69,6 +69,11 @@ elements = {
 # Balancing Chemical Equations
 
 def dissolve(compound):
+    '''Takes into account any equation with multiple molecules. Essentially,
+    if a compound is in a set of parentheses and a number is outside, it 
+    uses the distributive property to "dissolve" the molecule into its individual
+    elements.
+    '''
     slice_point = 0
     multiplied_compound = []
     end_paren = 0
@@ -172,8 +177,6 @@ def get_compounds_old():
     compound_one_elements = compound_one.split()
     compound_one_weight = get_weight(compound_one_elements)
 
-
-    print(compound_one_weight)
     '''
     for element in compound_one_elements:
         print(f"Enter the amount of {element}:")
